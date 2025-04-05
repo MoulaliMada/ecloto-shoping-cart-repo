@@ -3,7 +3,6 @@ import "./index.css";
 
 const ShopingCart = () => {
   const [addedCarts, setAddedCartds] = useState([]);
-  const [addedCartIds, setAddedCartIds] = useState([]);
   const [totalBuy, setTotalBuy] = useState(0);
   const PRODUCTS = [
     { id: 1, name: "Laptop", price: 500 },
@@ -91,7 +90,9 @@ const ShopingCart = () => {
         {totalBuy < THRESHOLD ? (
           <div className="progress_bar">
             <div className="progress_wrapper">
-              <p>Add ₹500 more to get a FREE Wireless Mouse!</p>
+              <p>
+                Add ₹{THRESHOLD - totalBuy} more to get a FREE Wireless Mouse!
+              </p>
               <div className="bar-container">
                 <div
                   className="bar-fill"
@@ -143,6 +144,15 @@ const ShopingCart = () => {
             );
           })}
         </ul>
+      )}
+      {totalBuy >= THRESHOLD && (
+        <div className="free_gift_container">
+          <div>
+            <h3>{FREE_GIFT.name}</h3>
+            <p>₹0x1=₹0</p>
+          </div>
+          <button>FREE GIFT</button>
+        </div>
       )}
     </div>
   );
